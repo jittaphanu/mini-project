@@ -10,19 +10,6 @@ body{
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-
-.logo {
-    /* color: white; */
-    color: #29fd53;
-    font-size: 28px;
-    margin-right: 3px;
-    text-decoration: none;
-}
-span{
-    color: white;
-    
-}
-
 section{
     display: flex;
     justify-content: center;
@@ -35,7 +22,7 @@ section{
 .form-box{
     position: relative;
     width: 400px;
-    height: 450px;
+    height: 650px;
     background: rgba(104, 206, 95, 0.247);
     display: flex;
     justify-content: center;
@@ -82,27 +69,6 @@ h2{
     top: 20px;
 }
 
-.forget{
-    margin: -15px 0 15px;
-    font-size: 0.8em;
-    color: white;
-    display: flex;
-    justify-content: center;
-}
-   
-.forget label input{
-    margin-right: 3px;
-}
-
-.forget label a{
-    color: white;
-    text-decoration: none;
-}
-
-.forget label a:hover{
-    text-decoration: underline;
-}
-
 button{
     width: 100%;
     height: 40px;
@@ -122,6 +88,5 @@ button{
 }
 
 .register a{
-    color: rgb(255, 0, 0);
+    color: rgb(47, 0, 255);
 }
-
