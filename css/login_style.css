@@ -46,25 +46,61 @@ h2{
     font-size: 2em;
     color: white;
     text-align: center;
+    padding-bottom: 15px;
+}
+.input-box{
+    position: relative;
+    padding-bottom: 15px;
+}
+.input-box_input{
+    font: inherit;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    outline: 2px solid #000;
+    background-color: transparent;
+    transition: outline-color 500ms;
+    
+
+}
+.input-box_input:is(:focus, :valid){
+    outline-color: greenyellow;
+}
+.input-box_label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    translate: 10px 10px;
+    color: #fff;
+    transition: translate 500ms , scale 500ms;
+
+}
+.input-box_input:focus + .input-box_label,.input-box_input:valid + .input-box_label{
+    padding-inline: 5px;
+    translate: 10px -14px;
+    scale: 0.8;
+    background-color: #000;
 }
 
+/* 
 .input-box{
     position: relative;
     margin: 30px 0;
     width: 310px;
     border-bottom: 2px solid white;
-}
+} */
 
-.input-box label{
+/* .input-box label{
     position: absolute;
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
     color: white;
     pointer-events: none;
-}
+} */
 
-.input-box input{
+/* .input-box input{
     width: 100%;
     height: 50px;
     background: transparent;
@@ -72,7 +108,7 @@ h2{
     outline: none;
     font-size: 1em;
     color: white;
-}
+} */
 
 .input-box i{
     position: absolute;
@@ -84,6 +120,7 @@ h2{
 
 .forget{
     margin: -15px 0 15px;
+    padding-top: 35px;
     font-size: 0.8em;
     color: white;
     display: flex;
