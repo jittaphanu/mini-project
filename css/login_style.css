@@ -58,15 +58,15 @@ h2{
     padding: 10px;
     border: none;
     border-radius: 4px;
-    outline: 2px solid #000;
+    outline: 2px solid #ffffff;
     background-color: transparent;
     transition: outline-color 500ms;
-    
-
 }
+
 .input-box_input:is(:focus, :valid){
     outline-color: greenyellow;
 }
+
 .input-box_label{
     position: absolute;
     top: 0;
@@ -74,13 +74,13 @@ h2{
     translate: 10px 10px;
     color: #fff;
     transition: translate 500ms , scale 500ms;
-
+    
 }
-.input-box_input:focus + .input-box_label,.input-box_input:valid + .input-box_label{
+.input-box_input+ .input-box_label,.input-box_input:valid + .input-box_label{
     padding-inline: 5px;
     translate: 10px -14px;
-    scale: 0.8;
-    background-color: #000;
+    scale: 1;
+    background-color: rgba(104, 206, 95, 0.87);
 }
 
 /* 
@@ -111,8 +111,7 @@ h2{
 } */
 
 .input-box i{
-    position: absolute;
-    right: 8px;
+    margin-left: 5px;
     color: white;
     font-size: 1em;
     top: 20px;
