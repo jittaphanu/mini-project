@@ -5,6 +5,10 @@
         
         $name = mysqli_real_escape_string($conn, $_POST['name']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $firstnn = mysqli_real_escape_string($conn, $_POST['first_name']);
+        $lastnn = mysqli_real_escape_string($conn, $_POST['last_name']);
+        $addre = mysqli_real_escape_string($conn, $_POST['address']);
+        $tte = mysqli_real_escape_string($conn, $_POST['telll']);
         $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
         $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
         $image = $_FILES['image']['name'];
@@ -24,7 +28,7 @@
             }elseif($image_size > 2000000){
                 $message[] = 'image size is too large!!!';
             }else{//สร้าง
-                $insert = mysqli_query($conn,"INSERT INTO member(username, email, password, image) VALUES('$name','$email','$pass','$image')") or die('query failed');
+                $insert = mysqli_query($conn,"INSERT INTO member(username, email, password, image, first_name, last_name, address, tel) VALUES('$name','$email','$pass','$image','$firstnn','$lastnn','$addre','$tte')") or die('query failed');
 
                 if($insert){
                     move_uploaded_file($image_tmp_name, $img_folder);
@@ -61,10 +65,14 @@
                 
             }
         ?>
-        <input type="text" name="name" placeholder="enter username" class="box" required>
-        <input type="email" name="email" placeholder="enter email" class="box" required>
+        <input type="text" name="name" placeholder="enter username" class="box" required>        
         <input type="password" name="password" placeholder="enter password" class="box" required>
         <input type="password" name="cpassword" placeholder="confirm password" class="box" required>
+        <input type="text" name="first_name" placeholder="enter firstname" class="box" required>
+        <input type="text" name="last_name" placeholder="enter lastname" class="box" required>
+        <input type="email" name="email" placeholder="enter email" class="box" required>
+        <input type="text" name="address" placeholder="your address" class="box" required>
+        <input type="text" name="telll" placeholder="your tel" class="box" required>
         <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
         <input type="submit" name="submit" value="register now" class="btn">
         <p>already have an account? <a href="login.php">login now</a></p>
