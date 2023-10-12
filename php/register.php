@@ -9,8 +9,8 @@
         $lastnn = mysqli_real_escape_string($conn, $_POST['last_name']);
         $addre = mysqli_real_escape_string($conn, $_POST['address']);
         $tte = mysqli_real_escape_string($conn, $_POST['telll']);
-        $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
-        $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+        $pass = mysqli_real_escape_string($conn, ($_POST['password']));
+        $cpass = mysqli_real_escape_string($conn, ($_POST['cpassword']));
         $image = $_FILES['image']['name'];
         $image_size = $_FILES['image']['size'];
         $image_tmp_name = $_FILES['image']['tmp_name'];
