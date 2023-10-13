@@ -36,9 +36,13 @@ if(isset($_GET['logout'])){
             if($fetch['image'] == ''){
                 echo '<img src="../image/default-avatar.png">';
             }else{
-                echo '<img src="../image/uploaded_img/.'.$fetch['image'].'">';
+                echo '<img src="../image/uploaded_img/'. $fetch['image'] .'">';
             }
         ?>
+        <!-- debug -->
+ 
+       
+        <!--  -->
         <h3><?php echo $fetch['username']?></h3>
         <a href="updateprofile.php" class="btn">update profile</a>
         <a href="home.php?logout=<?php echo $user_id; ?>" class="delete-btn">logout</a>

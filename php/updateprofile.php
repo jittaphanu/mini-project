@@ -30,7 +30,7 @@ if(isset($_POST['update_profile'])){
     $update_image = $_FILES['update_image']['name'];
     $update_image_size = $_FILES['update_image']['size'];
     $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-    $update_image_folder = '../image/uploaded_img/'.$update_image;
+    $update_image_folder = '../image/uploaded_img/' . $update_image;
 
     if(!empty($update_image)){
         if($update_image_size > 2000000){
@@ -71,11 +71,11 @@ if(isset($_POST['update_profile'])){
             if($fetch['image'] == ''){
                 echo '<img src="../image/default-avatar.png">';
             }else{
-                echo '<img src="../image/uploaded_img/.'.$fetch['image'].'">';
+                echo '<img src="../image/uploaded_img/'. $fetch['image'] .'">';
             }
             if(isset($message)){
                 foreach($message as $message){
-                    echo '<div class="message">'.$message.'</div>';
+                    echo '<div class="message">' . $message . '</div>';
                 }   
             }
         ?>
