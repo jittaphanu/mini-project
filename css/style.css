@@ -303,3 +303,6 @@ header{
 .products-container img:hover {
     transform: scale(1.05);
 }
+.bk-main{
+    background-color: #222327;
+}
