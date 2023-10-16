@@ -62,6 +62,16 @@ body{
     height:40px;
 }
 
+.shopping{
+    overflow-y: auto ;
+    min-height: 60vh;
+}
+
+.cart {
+    max-height: 100vh; /* หรือค่าที่เหมาะสมตามที่คุณต้องการ */
+    overflow-y: auto;
+}
+
 .shopping .search{
     padding:10px;
     height:40px;
@@ -244,7 +254,7 @@ body{
 }
 
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .container {
       display: block;
       margin: 0;
@@ -296,5 +306,5 @@ body{
     .payment{
         padding: 20px;
     }
-}
+} */
   
