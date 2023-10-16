@@ -38,7 +38,7 @@ if(isset($_GET['logout'])){
         <ul class="navbar">
             <li><a href="#" class="active">Home</a></li>
             <li><a href="../php/shopping.php">Shopping</a></li>
-            <li><a href="../html/History.html">History</a></li>
+            <li><a href="../php/history.php">History</a></li>
             <li><a href="../php/home.php">Profile</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
