@@ -20,7 +20,7 @@
     <div class="container">
         <div class="shopping">
             <div class="header">
-                <a class="logo" href="../html/main.html"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
+                <a class="logo" href="../php/main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
                 <div class="search">
                     <!-- ajax search -->
                     <div class="form">
