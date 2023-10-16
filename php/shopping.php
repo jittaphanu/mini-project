@@ -14,8 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
-    
 </head>
 
 <body>
@@ -37,15 +35,15 @@
                 $stmt->execute(); 
                 $row = $stmt->fetch();
             ?>
-            
-            
+
+
             <h2>SPECISE: <?php echo $row["sname"]; ?></h2>
-            
+
             <div class="img-head">
                 <img src='../image/img_specise/<?=$row["specise_id"]?>.jpg'>
                 <!-- <img src="img/1.jpg"> -->
             </div>
-            
+
             <div class="list">
                 <?php $counter = 1; while($row = $stmt->fetch()):?> 
                 <div class="item" data-key="<?= $counter ?>">
@@ -70,9 +68,9 @@
                     </div>
                 </div>
                 <?php  $counter++; endwhile;?>    
-    
+
             </div>
-            
+
         </div>
 
         <div class="cart">
@@ -89,8 +87,8 @@
             </div>
         </div>
     </div>
-    
+
+
     <script src="../js/js2.js"></script>
-    
 </body>
 </html>

@@ -1,10 +1,19 @@
 let list = document.querySelectorAll('.list .item');
 let cartList = document.querySelector('.listCart');
-// let counter = 0; // เพิ่มตัวแปรนับจำนวน
+let counter = 1;
+
+function Remove($counter){
+    let listCart = document.querySelectorAll('.cart .item');
+    listCart.forEach(item => {
+        if(item.getAttribute('data-key') == $counter){
+            item.remove();
+        }
+    })
+}
+
 
 list.forEach(item => {
-    item.setAttribute('data-key'); // กำหนดค่า data-key
-    counter++; // เพิ่มค่านับจำนวน
+    item.setAttribute('data-key', counter); // กำหนดค่า data-key
     item.addEventListener('click', function(event){
         if(event.target.classList.contains('add')){
             var itemNew = item.cloneNode(true);
@@ -20,24 +29,16 @@ list.forEach(item => {
                     },1000)
                 }
             })
-
             if(checkIsset == false){
-                cartList.appendChild(itemNew);
+                let itemNewClone = itemNew.cloneNode(true);
+                itemNewClone.querySelector('.add').remove();
+                cartList.appendChild(itemNewClone);
             }
-        
+
+        } else if(event.target.classList.contains('remove')) {
+            let currentItem = event.target.closest('.item');
+            currentItem.remove();
         }
-
-    }
-    )
-    counter ++;
-})
-
-function Remove(counter){
-    let listCart = document.querySelectorAll('.cart .item');
-    listCart.forEach(item => {
-        if(item.getAttribute('data-key') == counter){
-            item.remove();
-        }
-    })
-}
-
+    });
+    counter++;
+});

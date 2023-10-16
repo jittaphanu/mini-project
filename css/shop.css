@@ -22,7 +22,7 @@ body{
     padding: 0;
     /* padding:20px; */
     margin: -8px;
-    
+
 }
 /* .container .menu{
     background-color: var(--white);
@@ -60,16 +60,6 @@ body{
     background-color: white;
     padding:20px;
     height:40px;
-}
-
-.shopping{
-    overflow-y: auto ;
-    min-height: 60vh;
-}
-
-.cart {
-    max-height: 100vh; /* หรือค่าที่เหมาะสมตามที่คุณต้องการ */
-    overflow-y: auto;
 }
 
 .shopping .search{
@@ -259,45 +249,45 @@ body{
       display: block;
       margin: 0;
     }
-  
+
     .shopping, .cart {
       width: 100%;
     }
-  
+
     .container .shopping {
       border: none;
     }
-  
+
     .container .cart {
       border: none;
       margin-top: 20px;
     }
 
 
-  
+
     .shopping .search {
       width: 50%;
       margin-left: 0;
     }
-  
+
     .shopping .search .form {
       width: 50%;
     }
-  
+
     .shopping .search .form input {
       width: 50%;
     }
-  
+
     .shopping .search .form button {
       width: 30%;
       margin-top: 5px;
     }
-  
+
     .shopping .list {
       grid-template-columns: auto;
       row-gap: 20px;
     }
-  
+
     .item {
       grid-template-columns: auto;
     }
@@ -307,4 +297,3 @@ body{
         padding: 20px;
     }
 } */
-  
