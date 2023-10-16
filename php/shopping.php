@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    
 </head>
 
 <body>
@@ -64,7 +66,7 @@
                         </div>
                         <input type="number" class="count" min="1" value="1">
                         <button class="add">Add to cart</button>
-                        <button class="remove" onclick="Remove(1)"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="remove" onclick="Remove(<?= $counter ?>)"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
                 <?php  $counter++; endwhile;?>    
@@ -88,7 +90,7 @@
         </div>
     </div>
     
-
     <script src="../js/js2.js"></script>
+    
 </body>
 </html>
