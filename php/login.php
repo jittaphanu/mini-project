@@ -16,7 +16,7 @@
         if(mysqli_num_rows($select) > 0){//ในกรณีที่มีบัญชีเเล้ว
             $row = mysqli_fetch_assoc($select);
             $_SESSION['user_id'] = $row['member_id'];
-            header('location: ../html/main.html');
+            header('location: ../php/main.php');
         }else{
             $message[] = 'incorrect email or password';
         }
