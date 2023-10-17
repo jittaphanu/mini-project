@@ -1,19 +1,4 @@
-<?php
-include 'config.php';
-session_start();
-$user_id = $_SESSION['user_id'];
-
-if(!isset($user_id)){
-    header('location:login.php');
-};
-if(isset($_GET['logout'])){
-    unset($user_id);
-    session_destroy();  
-    header('location:login.php');
-}
-
-?>
-
+<?php include 'config.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,17 +26,11 @@ if(isset($_GET['logout'])){
             <li><a href="./history.php">History</a></li>
             <li><a href="./home.php">Profile</a></li>
             <li><a href="#">Contact</a></li>
+            
         </ul>
         <div class="main">
-            <!-- <a href="../php/login.php" class="user"><i class="ri-user-line"></i>Login</a>
-            <a href="../php/register.php">Register</a> -->
-            <?php
-            $select = mysqli_query($conn, "SELECT * FROM member WHERE member.member_id = '$user_id'") or die('query failed');
-            if(mysqli_num_rows($select) > 0){
-                $fetch = mysqli_fetch_assoc($select);
-            }
-            ?>
-            <h3>hello <?php echo $fetch['username'] ?></h3>
+            <a href="./login.php" class="user"><i class="ri-user-line"></i>Login</a>
+            <a href="./register.php">Register</a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
 

@@ -28,11 +28,13 @@
                         <button><i class="fa-solid fa-magnifying-glass"></i> Search</button>
                     </div>
                 </div>
+                <div class="bx bxs-cart-add" id="menu-icon"></div>
             </div>
 
             <?php
-                $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id WHERE specise.specise_id =1;");
-                $stmt->execute(); 
+                $specise_id = $_GET['specise_id'];
+                $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id WHERE specise.specise_id = ?;");
+                $stmt->execute([$specise_id]); 
                 $row = $stmt->fetch();
             ?>
 

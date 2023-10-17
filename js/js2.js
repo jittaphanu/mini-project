@@ -42,3 +42,13 @@ list.forEach(item => {
     });
     counter++;
 });
+
+let menu = document.querySelector('#menu-icon');
+let cart = document.querySelector('.cart');
+
+menu.onclick = () => {
+    menu.classList.toggle('bx-x');
+    cart.classList.toggle('open');
+};
+
+
