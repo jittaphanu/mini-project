@@ -45,10 +45,10 @@
         
         <div class="slider-wrapper">
             
-            <img src="../image/S__56123600.jpg">
-            <img src="../image/S__56123602.jpg">
-            <img src="../image/S__56123603.jpg">
-            <img src="../image/S__56123604.jpg">
+            <img src="../image/sl3.jpg">
+            <img src="../image/sl2.jpg">
+            <img src="../image/sl1.jpg">
+            <img src="../image/sl4.jpg">
         </div>
     </div>
     
@@ -73,7 +73,9 @@
         </div>
         <?php endwhile; ?>
     </div>
-    
+    <div>
+    <a href="../html/custom.html">Custom your own</a>
+    </div>
     
 
 
