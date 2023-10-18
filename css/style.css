@@ -180,16 +180,29 @@
        text-align: center;
    }
 
-   .custom{
+   .custom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: 2px solid #ffffff;
-        padding: 50px;
-        background-color: rgb(47, 138, 108);
-   }
-   .custom a{
+        padding: 30px;
+        background-color: rgba(37, 134, 102, 0.747);
+        width: 80%;
+        /* height: 150%; เปลี่ยนค่าตามที่ต้องการ */
+        margin: 0 auto;
+        margin-bottom: 20%;
+        border-radius: 10px;
+        
+    }
+    .custom a {
         text-align: center;
         color: #ffffff;
-   }
-   
+        text-decoration: none;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        font-size: larger;
+        
+    }
    
    
    @media (max-width: 1280px){

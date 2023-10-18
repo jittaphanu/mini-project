@@ -94,8 +94,8 @@ if(isset($_GET['logout'])){
         </div>
         <?php endwhile; ?>
     </div>
-    <div>
-    <a href="../html/custom.html">Custom your own</a>
+    <div class="custom">
+        <a href="../html/custom.html">Custom your own</a>
     </div>
     
 
