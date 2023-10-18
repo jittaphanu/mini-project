@@ -56,6 +56,7 @@
 <body>
     <div class="form-container">
         <form action="" method="post" enctype="multipart/form-data">
+        
         <h3>register now</h3>
         <?php
             if(isset($message)){
@@ -65,18 +66,20 @@
                 
             }
         ?>
-        <input type="text" name="name" placeholder="enter username" class="box" required>        
-        <input type="password" name="password" placeholder="enter password" class="box" required>
-        <input type="password" name="cpassword" placeholder="confirm password" class="box" required>
-        <input type="text" name="first_name" placeholder="enter firstname" class="box" required>
-        <input type="text" name="last_name" placeholder="enter lastname" class="box" required>
-        <input type="email" name="email" placeholder="enter email" class="box" required>
+
+        <input type="text" name="name" placeholder="enter username" class="box" required pattern="[A-Za-zก-๏0-9]{1,15}">        
+        <input type="password" name="password" placeholder="enter password" class="box" required pattern=".{1,10}">
+        <input type="password" name="cpassword" placeholder="confirm password" class="box" required pattern=".{1,10}">
+        <input type="text" name="first_name" placeholder="enter firstname" class="box" required pattern="[A-Za-zก-๏]{1,}">
+        <input type="text" name="last_name" placeholder="enter lastname" class="box" required pattern="[A-Za-zก-๏]{1,}">
+        <input type="email" name="email" placeholder="enter email" class="box" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
         <input type="text" name="address" placeholder="your address" class="box" required>
-        <input type="text" name="telll" placeholder="your tel" class="box" required>
+        <input type="text" name="telll" placeholder="your tel" class="box" required pattern="[0-9]{10}">
         <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
         <input type="submit" name="submit" value="register now" class="btn">
         <p>already have an account? <a href="login.php">login now</a></p>
         </form>
+
     </div>
 </body>
 </html>

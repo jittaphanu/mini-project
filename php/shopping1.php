@@ -20,7 +20,7 @@
     <div class="container">
         <div class="shopping">
             <div class="header">
-                <a class="logo" href="../main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
+                <a class="logo" href="../php/main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
                 <div class="search">
                     <!-- ajax search -->
                     <div class="form">
@@ -28,21 +28,19 @@
                         <button><i class="fa-solid fa-magnifying-glass"></i> Search</button>
                     </div>
                 </div>
-                <div class="bx bxs-cart-add" id="menu-icon"></div>
             </div>
 
             <?php
-                $specise_id = $_GET['specise_id'];
-                $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id WHERE specise.specise_id = ?;");
-                $stmt->execute([$specise_id]); 
+                $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id ");
+                $stmt->execute(); 
                 $row = $stmt->fetch();
             ?>
 
 
-            <h2>SPECISE: <?php echo $row["sname"]; ?></h2>
+            <h2>ALL PRODUCT</h2>
 
             <div class="img-head">
-                <img src='../image/img_specise/<?=$row["specise_id"]?>.jpg'>
+                <img src='../image/sl1.jpg'>
                 <!-- <img src="img/1.jpg"> -->
             </div>
 

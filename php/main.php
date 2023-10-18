@@ -37,7 +37,7 @@ if(isset($_GET['logout'])){
         <a class="logo"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
         <ul class="navbar">
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="./shopping.php">Shopping</a></li>
+            <li><a href="./shopping1.php">Shopping</a></li>
             <li><a href="./history.php">History</a></li>
             <li><a href="./home.php">Profile</a></li>
             <li><a href="#">Contact</a></li>

@@ -179,6 +179,16 @@
        margin-top: 38%;
        text-align: center;
    }
+
+   .custom{
+        border: 2px solid #ffffff;
+        padding: 50px;
+        background-color: rgb(47, 138, 108);
+   }
+   .custom a{
+        text-align: center;
+        color: #ffffff;
+   }
    
    
    

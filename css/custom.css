@@ -1,6 +1,6 @@
 
 body{
-    background: #191919;
+    background: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,4 +20,9 @@ body{
 .s-img:active{
     width: 180px;
     height: 180px;
+}
+
+.gotomain{
+    color: white;
+    text-decoration: #000000;
 }
