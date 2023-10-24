@@ -45,6 +45,12 @@ header {
     background-color: #222327;
 }
 
+:root{
+    --bg-color: #222327;
+    --text-color: #fff;
+    --main-color: #29fd53;
+}
+
 body{
     min-height: 100vh;
     /* background-color: var(--bg-color); */
@@ -53,4 +59,49 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+h1 {
+    padding:0 80px 20px;
+    display: flex;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 10%;
+    /* grid-template-columns: auto auto auto auto;    */
+    flex-wrap: wrap; 
+}
+
+.list {
+    display: flex;
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+.pic {
+    display: flex;
+}
+.pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 30px;
+}
+.details {
+    margin-left: 100px;
+    padding: 10px;
+}
+p{
+    font-size: 20px;
+}
+.total{
+    background-color: #222327;
+    padding: 10px;
+}
+h3.price{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+div.address{
+    margin-top: 30px;
+    margin: 80px;
 }
