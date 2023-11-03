@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/payment.css">
+   <!-- <link rel="stylesheet" href="../css/payment.css">-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <style>
-        *{
+       *{
             padding: 0;
             margin: 0;
             box-sizing: border-box;   
@@ -72,6 +72,7 @@
         }
 
         h1 {
+            margin-left: 200px;
             padding:0 80px 20px;
             display: flex;
             column-gap: 1rem;
@@ -83,27 +84,35 @@
 
         .list {
             display: flex;
-            margin-left: 100px;
-            margin-bottom: 50px;
+            background-color: #BDC3B9;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-left: 250px;
+            margin-right: 250px;
         }
         .pic {
             display: flex;
+            margin-left: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         .pic img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 30px;
         }
         .details {
-            margin-left: 100px;
+            color: #222327;
+            margin-left: 50px;
             padding: 10px;
+            padding-top: 50px;
         }
         p{
             font-size: 20px;
         }
         .total{
             background-color: #222327;
-            padding: 10px;
+            margin-top: 0px;
         }
         h3.price{
             text-align: center;
@@ -115,6 +124,7 @@
             margin-top: 30px;
             margin: 80px;
         }
+                
     </style>
 </head>
 <body>
@@ -122,16 +132,16 @@
        <a class="logo"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
         <div class="center-text">Payment</div>
     </header>
-    
-
     <?php 
         
         $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
         
+        //$order_id = $_GET['order_id'];
         $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price FROM lists
         JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
         $stmt->execute();
+       // $stmt->execute([$order_id]);
     ?>
 
 
@@ -140,21 +150,45 @@
    <?php while($row = $stmt->fetch()):?>
     <div class="list">
         <div class="pic">
-            <img src="../image/img_product/">
+            <?php
+                // สร้าง URL สำหรับรูปภาพโดยใช้ชื่อสินค้า (pname)
+                $imageFileName = $row['pname'] . '.jpg'; // สมมติว่ารูปภาพเก็บในรูปแบบ .jpg
+                $imagePath = '../image/img_product/' . $imageFileName;
+            ?>
+            <img src="<?php echo $imagePath; ?>">
         </div>
         <div class="details">
-            <p>ชื่อสินค้า:<?=$row['pname']?> </p>
-            <p>จำนวน: <?=$row['order_quatity']?> ชิ้น</p>
-            <p>ราคา: <?=$row['price']?> บาท</p>
+            <b><p>ชื่อสินค้า: <?=$row['pname']?> </p></b>
+            <b><p>จำนวน: <?=$row['order_quatity']?> ชิ้น</p></b>
+            <b><p>ราคา: <?=$row['price']?> บาท</p></b>
         </div>
     </div>
    <?php endwhile; ?>
 
+
+    <?php  $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
+        
+        //$order_id = $_GET['order_id'];
+        $stmt = $pdo->prepare("SELECT SUM(product.price) FROM lists
+        JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 2;");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        ?>
     <div class="total">
-        <h3 class="price">ราคารวม</h3>
+        <h3 class="price">ราคารวม = <?=$row["SUM(product.price)"]?> บาท</h3>
     </div>
 
-
+    
+    <?php  $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
+        
+        //$order_id = $_GET['order_id'];
+        $stmt = $pdo->prepare("SELECT SUM(product.price) FROM lists
+        JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 2;");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        ?>
     <div class="address">
         <h3>ที่อยู่</h3>
     </div>

@@ -84,7 +84,7 @@
                     จำนวนสินค้าทั้งหมด ต้น<br>
                     ราคารวม <!-- sum price--> บาท
                 </div>
-                <a class="pay" href="payment.html">ชำระเงิน</a>
+                <a class="pay" href="payment.php">ชำระเงิน</a>
             </div>
             </div>
         </div>
