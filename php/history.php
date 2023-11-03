@@ -3,49 +3,6 @@ include 'config.php';
 session_start();
 $user_id = $_SESSION['user_id'];
 
-if(isset($_POST['update_profile'])){
-
-    $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
-    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
-
-    mysqli_query($conn, "UPDATE member SET username='$update_name' , email ='$update_email' WHERE member_id = '$user_id'") or die('query failed');
-    $old_pass = $_POST['old_pass'];
-    $update_pass = mysqli_real_escape_string($conn, ($_POST['update_pass']));
-    $new_pass = mysqli_real_escape_string($conn, ($_POST['new_pass']));
-    $confirm_pass = mysqli_real_escape_string($conn, ($_POST['confirm_pass']));
-
-    if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){//ถ้าเปลี่ยน
-        if($update_pass != $old_pass){
-            $massage[] = 'old password not matched!!!';
-        }elseif($new_pass != $confirm_pass){
-            $massage[] = 'confirm password not matched!!!';
-        }else{
-            mysqli_query($conn, "UPDATE member SET password='$confirm_pass'  WHERE member_id = '$user_id'") or die('query failed');
-            $massage[] = 'password update successfully!!';
-        }
-
-        
-    }
-
-    $update_image = $_FILES['update_image']['name'];
-    $update_image_size = $_FILES['update_image']['size'];
-    $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-    $update_image_folder = '../image/uploaded_img/' . $update_image;
-
-    if(!empty($update_image)){
-        if($update_image_size > 2000000){
-            $message[] = 'image is too large';
-        }else{
-            $image_update_query = mysqli_query($conn, "UPDATE member SET image='$update_image'  WHERE member_id = '$user_id'") or die('query failed');
-            if($image_update_query){
-                move_uploaded_file($update_image_tmp_name, $update_image_folder);
-            }
-            $message[] = 'image update succesfully!!';
-        }
-    }
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -61,11 +18,10 @@ if(isset($_POST['update_profile'])){
 <body>
     <div class="update-profile">
     <?php
-        $select = mysqli_query($conn, "SELECT *,SUM(lists.order_quatity) FROM member JOIN orders ON member.member_id=orders.order_id JOIN lists ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id GROUP BY orders.order_id,lists.list_id;") or die('query failed');
+        
+        $select = mysqli_query($conn, "SELECT member.member_id,member.username , member.address , member.email , member.tel,member.image,product.pname,product.price,orders.total FROM member JOIN orders ON member.member_id = orders.member_id JOIN lists ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id WHERE member.member_id='$user_id';") or die('query failed');
         if(mysqli_num_rows($select) > 0){
             $fetch = mysqli_fetch_assoc($select);
-            
-            
         }
     ?>
     <form action="" method="post" enctype="multipart/form-data">
@@ -81,8 +37,11 @@ if(isset($_POST['update_profile'])){
                 }   
             }
         ?>
+        
         <div class="flex">
+        
             <div class="inputBox">
+            
                 <span>username :</span>
                 <h2 class="box"><?php echo $fetch['username']?></h2>
                 <span>youremail :</span>
@@ -91,22 +50,19 @@ if(isset($_POST['update_profile'])){
                 <h2 class="box"><?php echo $fetch['address']?></h2>
                 <span>tel :</span>
                 <h2 class="box"><?php echo $fetch['tel']?></h2>
-            
-                <span>list_id :</span>
-                <h2 class="box"><?php echo $fetch['pname']?></h2>
+                <?php while ($row = mysqli_fetch_assoc($select)): ?>
+                <span>name</span>
+                <h2 class="box"><?php echo $row['pname']?></h2>
+                <?php endwhile;?> 
+                <span>price</span>
+                <h2 class="box"><?php echo $fetch['total']?></h2>
                 
                 
             </div>
-            <div class="inputBox">
-                <input type="hidden" name="old_pass" value="<?php echo $fetch['password']?>">
-                <span>old password :</span>
-                <input type="password" name="update_pass" placeholder="enter previous password" class="box">
-                <span>new password :</span>
-                <input type="password" name="new_pass" placeholder="enter new password" class="box">
-                <span>confirm password :</span>
-                <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
-            </div>
+        
+
         </div>
+        
         <!-- <input type="submit" value="update profile" name="update_profile" class="btn"> -->
         <a href="home.php" class="delete-btn">go back</a>
     </form>
