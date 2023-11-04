@@ -77,7 +77,7 @@
             display: flex;
             column-gap: 1rem;
             row-gap: 1rem;
-            margin-top: 10%;
+            margin-top: 8%;
             /* grid-template-columns: auto auto auto auto;    */
             flex-wrap: wrap; 
         }
@@ -110,21 +110,20 @@
         p{
             font-size: 20px;
         }
-        .total{
+
+        .slip {
+            color: #fff;
             background-color: #222327;
-            margin-top: 0px;
-        }
-        h3.price{
-            text-align: center;
-            align-items: center;
+            padding: 5px;
+            position: fixed; /* Set position to fixed */
+            bottom: 0; /* Align it to the bottom */
+            width: 100%; /* Make it full width */
+            display: flex;
             justify-content: center;
         }
 
-        div.address{
-            margin-top: 30px;
-            margin: 80px;
-        }
-                
+        
+
     </style>
     
 </head>
@@ -133,21 +132,21 @@
        <a class="logo"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
         <div class="center-text">Payment</div>
     </header>
+
+    <h1>รายการสินค้า</h1>
+
     <?php 
         $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
         
         //$order_id = $_GET['order_id'];
-        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price FROM lists
-        JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
+        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price 
+        FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 3");
         $stmt->execute();
        // $stmt->execute([$order_id]);
     ?>
-
-
-    <h1>รายการสินค้า</h1>
-
-   <?php while($row = $stmt->fetch()):?>
+    
+    <?php while($row = $stmt->fetch()):?>
     <div class="list">
         <div class="pic">
             <?php
@@ -159,36 +158,31 @@
         <div class="details">
             <b><p>ชื่อสินค้า: <?=$row['pname']?> </p></b>
             <b><p>จำนวน: <?=$row['order_quatity']?> ชิ้น</p></b>
-            <b><p>ราคา: <?=$row['order_quatity*price']?> บาท</p></b>
+            <b><p>ราคา: <?=$row['order_quatity*price']?> ฿</p></b>
         </div>
     </div>
    <?php endwhile; ?>
-    
-    
-    
-   <?php  
-        //$order_id = $_GET['order_id'];
-        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price, 
-        SUM(lists.order_quatity*product.price) AS total_price
-        FROM lists
-        JOIN product ON lists.product_id = product.product_id 
-        WHERE lists.order_id = 1");
-        $stmt->execute();
-        // $stmt->execute([$order_id]);
-        $row = $stmt->fetch();
-    ?>
+        
 
-    <div class="total">
-        <h3 class="price">ราคารวม = <?=$row['total_price']?> บาท</h3>
-    </div>
+   <div class="slip">
+            <?php  
+                //$order_id = $_GET['order_id'];
+                $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price, 
+                SUM(lists.order_quatity*product.price) AS total_price
+                FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 3");
+                $stmt->execute();
+                // $stmt->execute([$order_id]);
+                $row = $stmt->fetch();
+            ?>
 
-
-    <div class="address">
-        <h3>ที่อยู่</h3>
-    </div>
-
-    <div class="slip">
-
+        <div class="payment-form">
+            <h2 class="price">ยอดชำระเงินทั้งหมด  <?=$row['total_price']?> ฿</h2>
+            <form action="payment1.php" method="post" enctype="multipart/form-data">
+                <label for="image">แนบสลิป:</label>
+                <input type="file" name="image" id="image"> 
+                <input type="submit" value="สั่งซื้อ">
+            </form>
+        </div>
     </div>
 </body>
 </html>
