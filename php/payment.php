@@ -126,6 +126,7 @@
         }
                 
     </style>
+    
 </head>
 <body>
     <header class="bk-main">
@@ -133,12 +134,11 @@
         <div class="center-text">Payment</div>
     </header>
     <?php 
-        
         $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
         
         //$order_id = $_GET['order_id'];
-        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price FROM lists
+        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price FROM lists
         JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
         $stmt->execute();
        // $stmt->execute([$order_id]);
@@ -151,8 +151,7 @@
     <div class="list">
         <div class="pic">
             <?php
-                // สร้าง URL สำหรับรูปภาพโดยใช้ชื่อสินค้า (pname)
-                $imageFileName = $row['pname'] . '.jpg'; // สมมติว่ารูปภาพเก็บในรูปแบบ .jpg
+                $imageFileName = $row['pname'] . '.jpg'; 
                 $imagePath = '../image/img_product/' . $imageFileName;
             ?>
             <img src="<?php echo $imagePath; ?>">
@@ -160,35 +159,30 @@
         <div class="details">
             <b><p>ชื่อสินค้า: <?=$row['pname']?> </p></b>
             <b><p>จำนวน: <?=$row['order_quatity']?> ชิ้น</p></b>
-            <b><p>ราคา: <?=$row['price']?> บาท</p></b>
+            <b><p>ราคา: <?=$row['order_quatity*price']?> บาท</p></b>
         </div>
     </div>
    <?php endwhile; ?>
-
-
-    <?php  $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
-        
+    
+    
+    
+   <?php  
         //$order_id = $_GET['order_id'];
-        $stmt = $pdo->prepare("SELECT SUM(product.price) FROM lists
-        JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 2;");
+        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price, 
+        SUM(lists.order_quatity*product.price) AS total_price
+        FROM lists
+        JOIN product ON lists.product_id = product.product_id 
+        WHERE lists.order_id = 1");
         $stmt->execute();
+        // $stmt->execute([$order_id]);
         $row = $stmt->fetch();
-        ?>
+    ?>
+
     <div class="total">
-        <h3 class="price">ราคารวม = <?=$row["SUM(product.price)"]?> บาท</h3>
+        <h3 class="price">ราคารวม = <?=$row['total_price']?> บาท</h3>
     </div>
 
-    
-    <?php  $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
-        
-        //$order_id = $_GET['order_id'];
-        $stmt = $pdo->prepare("SELECT SUM(product.price) FROM lists
-        JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 2;");
-        $stmt->execute();
-        $row = $stmt->fetch();
-        ?>
+
     <div class="address">
         <h3>ที่อยู่</h3>
     </div>

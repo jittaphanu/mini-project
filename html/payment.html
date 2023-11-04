@@ -7,6 +7,27 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/payment.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <script>
+        var httpRequest;
+        function send() {
+            httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = showResult;
+    
+            var a = document.getElementById("a").value;
+            var b = document.getElementById("b").value;
+            var c = document.getElementById("c").value;
+
+            var url= "ajax_no1.php?a=" + a + "&b=" + b + "&c=" + c;
+           
+           httpRequest.open("GET", url); //เปิดการติคต่อกับ backend method "GET","POST"
+           httpRequest.send();   //send to server
+       }
+       function showResult() {
+           if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+               document.getElementById("result").innerHTML = httpRequest.responseText;
+           }
+       }
+    </script>
 </head>
 <body>
     <header class="bk-main">
