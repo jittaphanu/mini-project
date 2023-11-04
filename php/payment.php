@@ -86,9 +86,9 @@
             display: flex;
             background-color: #BDC3B9;
             border-radius: 30px;
-            margin-bottom: 20px;
-            margin-left: 250px;
-            margin-right: 250px;
+            margin-bottom: 10px;
+            margin-left: 300px;
+            margin-right: 300px;
         }
         .pic {
             display: flex;
@@ -97,8 +97,8 @@
             margin-bottom: 20px;
         }
         .pic img {
-            width: 180px;
-            height: 180px;
+            width: 150px;
+            height: 150px;
             border-radius: 30px;
         }
         .details {
@@ -121,9 +121,11 @@
             display: flex;
             justify-content: center;
         }
-
-        
-
+      
+        .product-list {
+            overflow: auto; /* เพื่อให้มีแถบเลื่อนเมื่อเนื้อหามาก */
+            max-height: 600px; /* ปรับค่าตามที่คุณต้องการ ให้เลือนเมื่อเนื้อหามากขึ้น */
+        }
     </style>
     
 </head>
@@ -134,14 +136,14 @@
     </header>
 
     <h1>รายการสินค้า</h1>
-
+    <div class="product-list">
     <?php 
         $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
         
         //$order_id = $_GET['order_id'];
         $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price 
-        FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 3");
+        FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
         $stmt->execute();
        // $stmt->execute([$order_id]);
     ?>
@@ -161,7 +163,8 @@
             <b><p>ราคา: <?=$row['order_quatity*price']?> ฿</p></b>
         </div>
     </div>
-   <?php endwhile; ?>
+    <?php endwhile; ?>
+    </div>
         
 
    <div class="slip">
@@ -169,7 +172,7 @@
                 //$order_id = $_GET['order_id'];
                 $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price, 
                 SUM(lists.order_quatity*product.price) AS total_price
-                FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 3");
+                FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
                 $stmt->execute();
                 // $stmt->execute([$order_id]);
                 $row = $stmt->fetch();
