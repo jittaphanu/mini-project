@@ -1,6 +1,6 @@
 
 body{
-    background: #000000;
+    background: grey;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,14 +13,14 @@ body{
     transition: width 250ms ease , height 250ms ease;
     border-radius: 5px;
 }
-.s-img:hover{
+/* .s-img:hover{
     width: 220px;
     height: 220px;
-}
-.s-img:active{
+} */
+/* .s-img:active{
     width: 180px;
     height: 180px;
-}
+} */
 
 .gotomain{
     color: white;
