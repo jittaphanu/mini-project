@@ -2,6 +2,7 @@
 <html lang="en">
 <?php include './connect.php'; ?>
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,41 +16,61 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
-
+<script>
+function send() {
+    request = new XMLHttpRequest();
+    request.onreadystatechange = show1;
+    var keyword = document.getElementById("search1").value;
+    var url = "search.php?keyword=" + keyword;
+    request.open("GET", url, true);
+    request.send(null);
+}
+function show1(){
+    if(request.readyState == 4 ){
+        if (request.status == 200) {
+            document.getElementById("list").innerHTML = request.responseText;
+        }
+        
+    }
+}
+</script>
 <body>
     <div class="container">
         <div class="shopping">
             <div class="header">
                 <a class="logo" href="../php/main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
-                <div class="search">
+                <div class="search" >
+                    
                     <!-- ajax search -->
-                    <div class="form">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-                    </div>
+                    
+                    <input type="text" placeholder="Search..." id="search1" name="search1" onkeyup="send()">
+                        
+                    
                 </div>
             </div>
-
-            <?php
-                $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id ");
-                $stmt->execute(); 
-                $row = $stmt->fetch();
-            ?>
-
-
             <h2>ALL PRODUCT</h2>
 
             <div class="img-head">
                 <img src='../image/sl1.jpg'>
                 <!-- <img src="img/1.jpg"> -->
             </div>
-
-            <div class="list">
-                <?php $counter = 1; while($row = $stmt->fetch()):?> 
+            <?php include './config.php'; 
+            if (!empty($_GET["pdetail"])&&!empty($_GET["counter"])) {
+                $pname = $_GET["pdetail"];
+                    $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id WHERE product.pdetail = ?;");
+                    $stmt->execute([$pname]); 
+            }else{
+            $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id ");
+                        $stmt->execute(); 
+                        
+            }
+            ?>
+            <div class="list" id="list">
+            <?php $counter = 1; while($row = $stmt->fetch()):?> 
                 <div class="item" data-key="<?= $counter ?>">
                     <div class="img">
                         <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
-                        <!-- <img src="img1.png" alt=""> -->
+                       
                     </div>
                     <div class="content">
                         <div class="title">
@@ -67,7 +88,8 @@
                         <button class="remove" onclick="Remove(<?= $counter ?>)"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
-                <?php  $counter++; endwhile;?>    
+                <?php  $counter++; endwhile;
+                ?>    
 
             </div>
 

@@ -2,15 +2,14 @@ let list = document.querySelectorAll('.list .item');
 let cartList = document.querySelector('.listCart');
 let counter = 1;
 
-function Remove($counter){
+function Remove($counter) {
     let listCart = document.querySelectorAll('.cart .item');
     listCart.forEach(item => {
-        if(item.getAttribute('data-key') == $counter){
+        if (item.getAttribute('data-key') == $counter) {
             item.remove();
         }
-    })
+    });
 }
-
 
 list.forEach(item => {
     item.setAttribute('data-key', counter); // กำหนดค่า data-key
