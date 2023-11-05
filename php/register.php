@@ -75,7 +75,7 @@
         <input type="email" name="email" placeholder="enter email" class="box" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
         <input type="text" name="address" placeholder="your address" class="box" required>
         <input type="text" name="telll" placeholder="your tel" class="box" required pattern="[0-9]{10}">
-        <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
+        <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png" required >
         <input type="submit" name="submit" value="register now" class="btn">
         <p>already have an account? <a href="login.php">login now</a></p>
         </form>

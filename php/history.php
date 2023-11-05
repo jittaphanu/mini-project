@@ -21,7 +21,8 @@ $fetch = mysqli_fetch_assoc($fetch_query);
 <body>
     <div class="update-profile">
     <?php
-        $select = mysqli_query($conn, "SELECT member.member_id, member.username, member.address, member.email, member.tel, member.image, product.pname, product.price, orders.total FROM member JOIN orders ON member.member_id = orders.member_id JOIN lists ON orders.order_id = lists.order_id JOIN product ON product.product_id = lists.product_id WHERE member.member_id = '$user_id';") or die('Query failed');
+        $select = mysqli_query($conn, "SELECT member.member_id,member.username , member.address , member.email , member.tel,orders.order_id,lists.product_id,product.pname,product.price,lists.order_quatity,SUM(product.price*lists.order_quatity),orders.total FROM member JOIN orders ON member.member_id = orders.member_id JOIN lists ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id WHERE member.member_id='$user_id'
+        GROUP BY lists.list_id") or die('Query failed');
     ?>
     <form action="" method="post" enctype="multipart/form-data">
         <?php
@@ -53,17 +54,19 @@ $fetch = mysqli_fetch_assoc($fetch_query);
                 <?php
                 while ($row = mysqli_fetch_assoc($select)) {
                     ?>
-                    <span>name</span>
+                    <span>ชื่อสินค้า</span>
                     <h2 class="box"><?php echo $row['pname'] ?></h2>
-                    <span>price</span>
-                    <h2 class="box"><?php echo $row['price'] ?></h2>
+                    <span>เป็นจำนวณ</span>
+                    <h2 class="box"><?php echo $row['order_quatity'] ?></h2>
+                    <span>ราคา</span>
+                    <h2 class="box"><?php echo $row['SUM(product.price*lists.order_quatity)'] . " บาท" ?></h2>
                     <?php
                 } // End of while loop
                 $select = mysqli_query($conn, "SELECT SUM(orders.total) as total FROM member JOIN orders ON member.member_id = orders.member_id WHERE member.member_id = '$user_id';") or die('Query failed');
                 $total_row = mysqli_fetch_assoc($select);
                 ?>
-                <span>Total:</span>
-                <h2 class="box"><?php echo $total_row['total'] ?></h2>
+                <span>ราคารวมสุทธิ</span>
+                <h2 class="box"><?php echo $total_row['total'] . " บาท" ?></h2>
             </div>
         </div>
         
