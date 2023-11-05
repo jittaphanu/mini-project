@@ -1,3 +1,11 @@
+<?php
+include 'config.php';
+session_start();
+$user_id = $_SESSION['user_id'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,17 +146,18 @@
     <h1>รายการสินค้า</h1>
     <div class="product-list">
     <?php 
-        $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
+        // $pdo = new PDO("mysql:host=localhost;dbname=mycactus;charset=utf8", "root", "");
+        // $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);    
         
         //$order_id = $_GET['order_id'];
-        $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price 
-        FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
-        $stmt->execute();
+        // $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price,member.member_id,SUM(lists.order_quatity*product.price) AS total_price FROM lists JOIN product ON lists.product_id = product.product_id JOIN orders ON orders.order_id=lists.order_id JOIN member ON member.member_id=orders.member_id WHERE member.member_id = '$user_id' GROUP BY lists.list_id;");
+        // $stmt->execute();
        // $stmt->execute([$order_id]);
+        $select = mysqli_query($conn, "SELECT member.member_id,member.username , member.address , member.email , member.tel,orders.order_id,lists.product_id,product.pname,product.price,lists.order_quatity,SUM(product.price*lists.order_quatity),orders.total FROM member JOIN orders ON member.member_id = orders.member_id JOIN lists ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id WHERE member.member_id='$user_id'
+        GROUP BY lists.list_id") or die('Query failed');
     ?>
     
-    <?php while($row = $stmt->fetch()):?>
+    <?php while ($row = mysqli_fetch_assoc($select)) { ?>
     <div class="list">
         <div class="pic">
             <?php
@@ -160,26 +169,26 @@
         <div class="details">
             <b><p>ชื่อสินค้า: <?=$row['pname']?> </p></b>
             <b><p>จำนวน: <?=$row['order_quatity']?> ชิ้น</p></b>
-            <b><p>ราคา: <?=$row['order_quatity*price']?> ฿</p></b>
+            <b><p>ราคา: <?=$row['SUM(product.price*lists.order_quatity)']?> ฿</p></b>
         </div>
     </div>
-    <?php endwhile; ?>
+    <?php } ?>
     </div>
         
 
    <div class="slip">
             <?php  
                 //$order_id = $_GET['order_id'];
-                $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price, 
-                SUM(lists.order_quatity*product.price) AS total_price
-                FROM lists JOIN product ON lists.product_id = product.product_id WHERE lists.order_id = 1");
-                $stmt->execute();
+                // $stmt = $pdo->prepare("SELECT lists.order_id, product.pname, lists.order_quatity, product.price,order_quatity*price,member.member_id,SUM(lists.order_quatity*product.price) AS total_price FROM lists JOIN product ON lists.product_id = product.product_id JOIN orders ON orders.order_id=lists.order_id JOIN member ON member.member_id=orders.member_id WHERE member.member_id='$user_id' GROUP BY lists.list_id;")
+                // $stmt->execute();
                 // $stmt->execute([$order_id]);
-                $row = $stmt->fetch();
+                // $row = $stmt->fetch();
+                $select = mysqli_query($conn, "SELECT SUM(orders.total) as total FROM member JOIN orders ON member.member_id = orders.member_id WHERE member.member_id = '$user_id';") or die('Query failed');
+                $total_row = mysqli_fetch_assoc($select);
             ?>
 
         <div class="payment-form">
-            <h2 class="price">ยอดชำระเงินทั้งหมด  <?=$row['total_price']?> ฿</h2>
+            <h2 class="price">ยอดชำระเงินทั้งหมด  <?php echo $total_row['total'] ?> ฿</h2>
             <form action="payment1.php" method="post" enctype="multipart/form-data">
                 <label for="image">แนบสลิป:</label>
                 <input type="file" name="image" id="image"> 
