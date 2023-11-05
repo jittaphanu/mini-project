@@ -21,7 +21,7 @@ $fetch = mysqli_fetch_assoc($fetch_query);
 <body>
     <div class="update-profile">
     <?php
-        $select = mysqli_query($conn, "SELECT member.member_id,member.username , member.address , member.email , member.tel,orders.order_id,lists.product_id,product.pname,product.price,lists.order_quatity,SUM(product.price*lists.order_quatity),orders.total FROM member JOIN orders ON member.member_id = orders.member_id JOIN lists ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id WHERE member.member_id='$user_id'
+        $select = mysqli_query($conn, "SELECT member.member_id,member.username , member.address , member.email , member.tel,orders.order_id,lists.product_id,product.pname,product.price,lists.order_quatity,SUM(product.price*lists.order_quatity),orders.total,orders.date,orders.status FROM member JOIN orders ON member.member_id = orders.member_id JOIN lists ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id WHERE member.member_id='$user_id'
         GROUP BY lists.list_id") or die('Query failed');
     ?>
     <form action="" method="post" enctype="multipart/form-data">
@@ -60,6 +60,10 @@ $fetch = mysqli_fetch_assoc($fetch_query);
                     <h2 class="box"><?php echo $row['order_quatity'] ?></h2>
                     <span>ราคา</span>
                     <h2 class="box"><?php echo $row['SUM(product.price*lists.order_quatity)'] . " บาท" ?></h2>
+                    <span>วันที่</span>
+                    <h2 class="box"><?php echo $row['date']  ?></h2>
+                    <span>สถานะการสั่งซื้อ</span>
+                    <h2 class="box"><?php echo $row['status']  ?></h2>
                     <?php
                 } // End of while loop
                 $select = mysqli_query($conn, "SELECT SUM(orders.total) as total FROM member JOIN orders ON member.member_id = orders.member_id WHERE member.member_id = '$user_id';") or die('Query failed');
