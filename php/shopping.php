@@ -81,7 +81,7 @@
                                 <?=$row["price"]?> บาท
                             </div>
                             <input type="number" class="count" min="1" value="1">
-                            <button class="add" >Add to cart</button>
+                            <!-- <button class="add" >Add to cart</button> -->
                             <a href="cart.php?action=add&product_id=<?= $row['product_id']?>&qty=1&specise_id=">Add to cart</a>
                             <button class="remove" onclick="Remove(<?= $counter ?>)" ><i class="fa-solid fa-trash-can"></i></button> 
                         

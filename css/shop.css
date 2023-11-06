@@ -9,7 +9,7 @@
 body{
     background-color: var(--green);
     font-family: 'Poppins', sans-serif; 
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     /* overflow: hidden; */
 }
 .container{
@@ -34,12 +34,12 @@ body{
     color: white;
     display: inline-flex;
 }
-.container .logo a {
+.logo a {
     color: var(--white);
     /* text-decoration: none; */
 }
 
-.container .logo i{
+.logo i{
     color: var(--green);
     font-size: 25px;
     margin-right: 5px;
@@ -48,11 +48,32 @@ body{
     /* text-decoration: none; */
 }
 
-.container .logo span{
+.logo span{
     color: var(--text-color);
     font-size: 1.5rem;
     font-weight: 600;
     /* text-decoration: none; */
+}
+
+.shopping .to_cart{
+    text-align: left;
+    margin-right: 20px;
+    font-size: 25px;
+    color: #000;
+    text-decoration: none;
+    margin-left: 15%;
+    display: inline;
+
+}
+
+#cart_count{
+    text-align: center;
+    /* padding: 0 0.9rem 0.1rem 0.9rem; */
+    border-radius: 3rem;
+}
+
+.cart-items + .cart-items{
+    padding: 2% 0;
 }
 
 .container .cart{
@@ -68,11 +89,16 @@ body{
 }
 
 .header{
-    display: flex;
+    /* display: flex; */
     background-color: white;
     padding:20px;
     height:40px;
+    /* margin-top: 0px; */
+    width: 100%;
+    top: -2;
+    right: -2;
 }
+
 #menu-icon{
     font-size: 30px;
     color: var(--text-color);
@@ -281,22 +307,7 @@ body{
         padding: 0px;
         height:70px;
     }
-    #menu-icon{
-        /* display: inline-block; */
-        display: inline;
-        margin-right: 25px;
-        /* margin-left: 1%; */
-        /* flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-end; */
-    }
-    .open {
-        display: flex;
-    }
-    .cart {
-        display: none;
-        
-    }
+
     .logo{
         /* font-size: 1px; */
         color: #ffffff;
