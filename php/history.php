@@ -27,6 +27,7 @@ $username= $_SESSION['user_name'];
             <div class="d-flex justify-content-between align-items-center">
               <div>
                 <p class="text-muted mb-0"> Hello, <span class="fw-bold text-body"><?=$username?></span> </p>
+                <a href="./main.php">back to home</a>
               </div>
             </div>
           </div>

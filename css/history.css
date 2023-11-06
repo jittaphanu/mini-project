@@ -1,12 +1,15 @@
 .gradient-custom-2 {
     /* fallback for old browsers */
-    background: #a1c4fd;
-    
+    /* background: rgb(153, 179, 179); */
+    background: url(../image/cactusbg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+    /* background: -webkit-linear-gradient(to right, rgb(230, 239, 248), rgb(216, 230, 243)); */
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
+    /* background: linear-gradient(to right, rgb(208, 226, 243), rgbargb(241, 242, 243)); */
     }
     
     #progressbar-1 {
