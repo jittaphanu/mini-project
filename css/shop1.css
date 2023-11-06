@@ -12,27 +12,7 @@ body{
     background-color: rgb(255, 255, 255);
     /* overflow: hidden; */
 }
-.container{
-    /* width:1200px; */
-    /* border:1px solid var(--white); */
-    /* max-width: 100%; */
-    /* margin:0px ; */
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    padding: 0;
-    /* padding:20px; */
-    margin: -8px;
 
-}
-/* .container .menu{
-    background-color: var(--white);
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-} */
-
-.shopping hr{
-    margin-top: -1px;
-}
 .logo{
     color: white;
     display: inline-flex;
@@ -59,23 +39,14 @@ body{
 }
 
 .shopping .to_cart{
-    /* text-align: left; */
-    /* margin-right: 20px; */
+    text-align: left;
+    margin-right: 20px;
     font-size: 25px;
     color: #000;
     text-decoration: none;
-    /* margin-left: 15%; */
+    margin-left: 15%;
     display: inline;
-
 }
-
-.header .text-header{
-    display: inline-flex;
-    text-align: center;
-    font-size:xx-large;
-    margin-top: -8px;
-}
-
 .to_cart a{
     text-decoration: none;
     display: inline;
@@ -84,7 +55,6 @@ body{
 .to_cart a p{
     display: inline;
 }
-
 .header{
     display: flex;
     background-color: white;
@@ -98,9 +68,11 @@ body{
     text-align: center;
 }
 
+
 /* shopping */
+
 .shopping .search{
-    display: inline-flex;
+    display: inline;
     text-align: center;
 }
 
@@ -111,31 +83,8 @@ body{
     padding-left:15px;
     color:var(--light);
     display: inline;
-    /* align-items: center;
-    justify-items: center; */
-    /* margin-top: 10px; */
-
 }
-/* .shopping .search .form input{
-    border:none;
-    padding:0 10px;
-    outline: none;
-    width:250px;
-} */
-/* .shopping .search .form button{
-   border:none;
-   background-color: var(--green);
-   color: var(--light);
-   padding:10px 20px;
-   border-radius: 20px;
-} */
-
     /* end form */
-
-.shopping h2{
-    padding:10px;
-    font-size: xx-large;
-}
 
 .shopping .img-head img{
     display: block;
@@ -146,7 +95,7 @@ body{
     padding: 15px;
 }
 
-.list{
+.shopping .list{
     padding:0 20px 20px;
     display: grid;
     grid-template-columns: auto auto auto;
@@ -156,9 +105,9 @@ body{
     justify-content: center;
     align-items: center;
 }
-.list .item .listitem{
+.list .item{
     background-color: var(--white);
-    display: grid;
+    display: flex;
     grid-template-columns: 45% 55%;
     padding:10px;
     column-gap: 20px;
@@ -167,19 +116,20 @@ body{
 }
 
 .list .item .img{
-    width: 100%;
+    width: 80%;
     height: 120px;
     border-radius: 15px;
     object-fit: cover;
     transform: scale(1.2);
     margin-top: 20px;
-    display: flex;
+    /* margin-left: 25% ; */
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     border-radius: 20px;
 }
 
-.item .listitem .img img {
+.item .img img {
     width: 80%;
     height: 80%; 
     max-width: 100%;
@@ -190,13 +140,17 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin: auto; */
+    margin-left: 20%;
+    margin-right: auto ;
+}
+
+.item .content{
+    margin-left: 5%;
 }
 
 .item .content .title{
     font-weight: bold;
 }
-
 .item .content .des{
     font-size: small;
     opacity: 0.7;
@@ -229,22 +183,16 @@ body{
     font-size: small;
     
 }
-
-
-@media (max-width: 1000px) {
-    .item {
-        grid-template-columns:auto auto;
-        column-gap: 20px;
-    }
-    
-    .shopping .list {
-        grid-template-columns: auto auto;
-        row-gap: 20px;
-    }
-
+.shopping .search input{
+    width:150px;
 }
 
+
 @media (max-width: 600px) {
+    .container {
+      display: block;
+      
+    }
     .header { 
         display: flex;
         align-items: center;
@@ -270,6 +218,14 @@ body{
         font-size: 17px;
     }
 
+    .container .shopping {
+      border: none;
+    }
+
+    .container .cart {
+      border: none;
+      margin-top: 20px;
+    }
 
     .shopping .search{
         display: flex;
@@ -295,16 +251,17 @@ body{
     }
 
     .item {
-        grid-template-columns: auto;
+      grid-template-columns: auto;
     }
 
+
+    .payment{
+        padding: 20px;
+    }
+    .shopping .search input{
+        width:150px;
+    }
     .to_cart a p{
         display: none;
     }
-
-
-    .header .text-header{
-        margin-top:  0px;
-    }
-    
 }

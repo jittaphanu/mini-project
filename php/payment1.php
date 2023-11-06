@@ -38,12 +38,11 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/payment.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <link href="../css/payment.css" rel="stylesheet">
     
 </head>
 <body>
     <header class="bk-main">
-       <a class="logo"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
+       <a class="logo" href="./main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
         <div class="center-text">Payment</div>
     </header>
 
@@ -80,7 +79,7 @@
             <h2 class="price">ยอดชำระเงินทั้งหมด  <?php echo $sum ?> ฿</h2>
             <form action="payment1.php" method="post" enctype="multipart/form-data">
                 <label for="image">แนบสลิป:</label>
-                <input type="file" name="image" id="image"> 
+                <input type="file" name="image" id="image" required> 
                 <input type="submit" name="Submit" value="สั่งซื้อ">
             </form>
         </div>

@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/shop.css">
+    <link rel="stylesheet" href="../css/shop1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,17 +36,14 @@ function show1(){
 }
 </script>
 <body>
-    <div class="container">
         <div class="shopping">
             <div class="header">
                 <a class="logo" href="../php/main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
                 <div class="search" >
-                    
-                    <!-- ajax search -->
-                    
                     <input type="text" placeholder="Search..." id="search1" name="search1" onkeyup="send()">
-                        
-                    
+                </div>
+                <div class="to_cart">
+                    <a class="cart" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i><p>Cart</p></a>
                 </div>
             </div>
             <h2>ALL PRODUCT</h2>
@@ -89,10 +86,8 @@ function show1(){
                             <div class="price">
                                 <?=$row["price"]?> บาท
                             </div>
-                            <input type="number" class="count" min="1" value="1">
-                            <!-- <button class="add" >Add to cart</button> -->
+                            <input type="number" class="count" min="1" value="1"><br>
                             <a href="cart.php?action=add&product_id=<?= $row['product_id']?>&qty=1">Add to cart</a>
-                            <button class="remove" onclick="Remove(<?= $counter ?>)" ><i class="fa-solid fa-trash-can"></i></button> 
                         
                         </div>
                     </form>

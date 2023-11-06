@@ -315,18 +315,10 @@
    
    .item{
        align-items: center;
-       justify-content: center;/* 
+       justify-content: center;
        background-color: var(--white);
-       grid-template-rows: 45% 55%; 
-       padding:10px;
-       column-gap: 20px;
-       border-radius: 20px;
-       text-align: center; */
-       background-color: var(--white);
-       /* display: grid; */
        grid-template-rows: 80% 20%;
        padding:15px;
-       /* column-gap: 20px; */
        border-radius: 20px;
        flex-grow: 2;
        flex-shrink: 0;

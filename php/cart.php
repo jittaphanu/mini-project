@@ -41,11 +41,7 @@
     }else if($_GET['action']== "remove"){
         $pid = $_GET['product_id'];
         unset($_SESSION['cart'][$pid]);
-    }
-    
-    
-
-    
+    } 
 ?>
 
 <head>
@@ -53,7 +49,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/shop.css">
+    <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,25 +59,22 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="cart">
-            <a href="<?=$url?>"><i class="fa-solid fa-arrow-left"></i></a>
-                <div class="name">CART</div>
-                
-                <?php foreach ($_SESSION['cart'] as $item) { ?>
-                <div class="listCart">
-                    <div class="item" data-key="1"> 
-                        
+    <div class="header">
+        <a class="to_main" href="<?=$url?>"><i class="fa-solid fa-arrow-left"></i></a>            
+        <div class="text-header">CART</div>
+    </div><hr>
+    <div class=""container>
+        <div class="list">
+            <?php foreach ($_SESSION['cart'] as $item) { ?>
+                <div class="item" data-key="1">    
+                    <div class="listitem">       
                         <div class="img">
-                            <img src='../image/img_product/<?=$item["pname"]?>.jpg'>
-                                
+                            <img src='../image/img_product/<?=$item["pname"]?>.jpg'>      
                         </div>
                         <div class="content"> 
-                                
                             <div class="title">
                                 <?=$item["pname"]?>
                             </div>
-
                             <div class="des">
                                 <?=$item["pdetail"]?>
                             </div>
@@ -89,25 +82,29 @@
                                 <?=$item["price"]?> บาท
                             </div>
                             <input type="number" class="count" min="1" value="<?=$item['qty']?>">
-                            <a href="?action=remove&product_id=<?=$item['product_id']?>">Remove</a>
-                        
-                        </div>
-                    
+                            <a  href="?action=remove&product_id=<?=$item['product_id']?>"><i class="fa-solid fa-trash-can"></i></a>                
+                        </div>         
                     </div>
-                </div>
-                <?php }?>
+                </div>    
+            <?php }?>
+        </div>
         </div>
 
         <div class="payment">
             <div class="text">
-                จำนวนทั้งหมด ต้น
-                ราคารวม <!-- sum price--> บาท
+                จำนวนทั้งหมด <?php echo count($_SESSION['cart']); ?> ต้น<br>
+                ราคารวม <?php
+                            $sum = 0;
+                            foreach ($_SESSION['cart'] as $item) {
+                                $sum += $item['price'] * $item['qty'];
+                            }
+                            echo $sum;
+                        ?> บาท
             </div>
             <a class="pay" href="payment1.php">ชำระเงิน</a>
             
         </div>
     </div>
-
 
     <script src="../js/js2.js"></script>
 </body>

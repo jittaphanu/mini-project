@@ -31,19 +31,12 @@
         <div class="shopping">
             <div class="header">
                 <a class="logo" href="./main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
-                <div class="search">
-                    <!-- ajax search -->
-                    <div class="form">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-                    </div>
-                </div>
-                <div class="bx bxs-cart-add" id="menu-icon"></div>
+                <div class="text-header">SHOPPING</div>
                 <div class="to_cart">
-                    <a class="cart" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
-
+                    <a class="cart" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i><p>Cart</p></a>
                 </div>
-            </div><hr>
+            </div>
+            <hr>
 
             <?php
                 $specise_id = $_GET['specise_id'];
@@ -64,27 +57,29 @@
                 <?php $counter = 1; while($row = $stmt->fetch()):?> 
                 <div class="item" data-key="<?= $counter ?>">
                     <form method="get" action="./cart.php" >
-                        <div class="img">
-                            <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
-                            <!-- <img src="img1.png" alt=""> -->
-                        </div>
-                        <div class="content"> 
-                            
-                            <div class="title">
-                                <?=$row["pname"]?>
+                        <div class="listitem">
+                            <div class="img">
+                                <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
+                                <!-- <img src="img1.png" alt=""> -->
                             </div>
+                            <div class="content"> 
+                                
+                                <div class="title">
+                                    <?=$row["pname"]?>
+                                </div>
 
-                            <div class="des">
-                                <?=$row["pdetail"]?>
+                                <div class="des">
+                                    <?=$row["pdetail"]?>
+                                </div>
+                                <div class="price">
+                                    <?=$row["price"]?> บาท
+                                </div>
+                                <input type="number" class="count" min="1" value="1"><br>
+                                <!-- <button class="add" >Add to cart</button> -->
+                                <a href="cart.php?action=add&product_id=<?= $row['product_id']?>&qty=1&specise_id=<?=$row["specise_id"]?>"><i class="fa-solid fa-cart-plus"></i> Add to Cart</a>
+                                
+                            
                             </div>
-                            <div class="price">
-                                <?=$row["price"]?> บาท
-                            </div>
-                            <input type="number" class="count" min="1" value="1">
-                            <!-- <button class="add" >Add to cart</button> -->
-                            <a href="cart.php?action=add&product_id=<?= $row['product_id']?>&qty=1&specise_id=<?=$row["specise_id"]?>">Add to cart</a>
-                            <button class="remove" onclick="Remove(<?= $counter ?>)" ><i class="fa-solid fa-trash-can"></i></button> 
-                        
                         </div>
                     </form>
                 </div>
