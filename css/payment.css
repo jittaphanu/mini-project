@@ -5,7 +5,7 @@
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
     list-style: none;
-   }
+}
 header {
     position: fixed;
     width: 100%;
@@ -62,46 +62,136 @@ body{
 }
 
 h1 {
+    margin-left: 200px;
     padding:0 80px 20px;
     display: flex;
     column-gap: 1rem;
     row-gap: 1rem;
-    margin-top: 10%;
+    margin-top: 8%;
     /* grid-template-columns: auto auto auto auto;    */
     flex-wrap: wrap; 
 }
 
-.list {
+div.list {
     display: flex;
-    margin-left: 100px;
-    margin-bottom: 50px;
+    background-color: #BDC3B9;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    margin-left: 300px;
+    margin-right: 300px;
 }
+
 .pic {
     display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .pic img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 30px;
 }
 .details {
-    margin-left: 100px;
+    color: #222327;
+    margin-left: 50px;
     padding: 10px;
+    padding-top: 50px;
 }
 p{
     font-size: 20px;
 }
-.total{
+
+.slip {
+    color: #fff;
     background-color: #222327;
-    padding: 10px;
-}
-h3.price{
-    text-align: center;
-    align-items: center;
+    padding: 5px;
+    position: fixed; /* Set position to fixed */
+    bottom: 0; /* Align it to the bottom */
+    width: 100%; /* Make it full width */
+    display: flex;
     justify-content: center;
 }
 
-div.address{
-    margin-top: 30px;
-    margin: 80px;
+.product-list {
+    overflow: auto; /* เพื่อให้มีแถบเลื่อนเมื่อเนื้อหามาก */
+    max-height: 600px; /* ปรับค่าตามที่คุณต้องการ ให้เลือนเมื่อเนื้อหามากขึ้น */
 }
+@media (max-width: 600px) {
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-color);
+        padding: 2%;
+        transition: all 0.5s ease;
+        color: var(--text-color);
+    }
+            
+            .logo {
+                display: flex;
+                align-items: center;
+            }
+            
+            .logo i {
+                color: var(--main-color);
+                font-size: 25px;
+                margin-right: 3px;
+            }
+            
+            .logo span {
+                color: var(--text-color);
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+            
+        
+            h1 {
+                margin: 20px; 
+                text-align: center; 
+            }
+            
+            .list {
+                background-color: var(--bg-color);
+                border-radius: 10px;
+                margin: 10px;
+                padding: 10px;
+            }
+            
+            .pic {
+                display: flex;
+                justify-content: center; 
+                margin: 10px;
+            }
+            
+            .pic img {
+                width: 100%; 
+                border-radius: 10px;
+            }
+            
+            .details {
+                color: var(--text-color);
+                margin: 10px;
+                padding: 10px;
+                text-align: center; 
+            }
+            
+            p {
+                font-size: 16px; 
+            }
+            
+        
+            .product-list {
+                    overflow-y: auto; 
+                    max-height: 400px; 
+                }
+                
+            }
+        
+        
+       
