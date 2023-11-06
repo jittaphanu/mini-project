@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include './connect.php'; ?>
+<?php 
+    session_start();
+    include './connect.php';
+    include './config.php';
+    if(!isset($_SESSION['cart'])){
+        $_SESSION['cart']=array(); //create  session cart
+    }
+    
 
+    
+
+?>
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +28,6 @@
 </head>
 
 <body>
-    <div class="container">
         <div class="shopping">
             <div class="header">
                 <a class="logo" href="./main.php"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
@@ -29,15 +39,19 @@
                     </div>
                 </div>
                 <div class="bx bxs-cart-add" id="menu-icon"></div>
-            </div>
+                <div class="to_cart">
+                    <a class="cart" href="./cart.php"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+
+                </div>
+            </div><hr>
 
             <?php
                 $specise_id = $_GET['specise_id'];
+                $_SESSION['specise_id'] = $specise_id;
                 $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id WHERE specise.specise_id = ?;");
                 $stmt->execute([$specise_id]); 
                 $row = $stmt->fetch();
             ?>
-
 
             <h2>SPECISE: <?php echo $row["sname"]; ?></h2>
 
@@ -49,47 +63,36 @@
             <div class="list">
                 <?php $counter = 1; while($row = $stmt->fetch()):?> 
                 <div class="item" data-key="<?= $counter ?>">
-                    <div class="img">
-                        <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
-                        <!-- <img src="img1.png" alt=""> -->
-                    </div>
-                    <div class="content">
-                        <div class="title">
-                             <?=$row["pname"]?>
+                    <form method="get" action="./cart.php" >
+                        <div class="img">
+                            <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
+                            <!-- <img src="img1.png" alt=""> -->
                         </div>
+                        <div class="content"> 
+                            
+                            <div class="title">
+                                <?=$row["pname"]?>
+                            </div>
 
-                        <div class="des">
-                            <?=$row["pdetail"]?>
+                            <div class="des">
+                                <?=$row["pdetail"]?>
+                            </div>
+                            <div class="price">
+                                <?=$row["price"]?> บาท
+                            </div>
+                            <input type="number" class="count" min="1" value="1">
+                            <button class="add" >Add to cart</button>
+                            <a href="cart.php?action=add&product_id=<?= $row['product_id']?>&qty=1&specise_id=">Add to cart</a>
+                            <button class="remove" onclick="Remove(<?= $counter ?>)" ><i class="fa-solid fa-trash-can"></i></button> 
+                        
                         </div>
-                        <div class="price">
-                            <?=$row["price"]?> บาท
-                        </div>
-                        <input type="number" class="count" min="1" value="1">
-                        <button class="add">Add to cart</button>
-                        <button class="remove" onclick="Remove(<?= $counter ?>)"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
+                    </form>
                 </div>
                 <?php  $counter++; endwhile;?>    
 
             </div>
 
         </div>
-
-        <div class="cart">
-            <div class="">
-            <div class="name">CART</div>
-            <div class="listCart"></div>
-            <div class="payment">
-                <div class="text">
-                    จำนวนสินค้าทั้งหมด ต้น<br>
-                    ราคารวม <!-- sum price--> บาท
-                </div>
-                <a class="pay" href="payment.php">ชำระเงิน</a>
-            </div>
-            </div>
-        </div>
-    </div>
-
 
     <script src="../js/js2.js"></script>
 </body>

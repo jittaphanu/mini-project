@@ -1,18 +1,9 @@
-<?php
-include 'config.php';
+<?php include './php/config.php';
 session_start();
-if(!isset($_SESSION['user_id'])){
-    header('location:login.php');
-    exit();
-};
-if(isset($_GET['logout'])){
-    unset($user_id);
-    session_destroy();  
-    header('location:login.php');
-}
-$user_id = $_SESSION['user_id'];
-?>
-
+if (isset($_SESSION['user_id'])) { // ถ้าlogin ไว้แล้ว
+    header("location: ./php/main.php"); // ให้ redirect ไป หน้าlogin แล้ว
+    exit;
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +16,7 @@ $user_id = $_SESSION['user_id'];
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>miniproject</title>
     
 </head>
@@ -36,21 +27,15 @@ $user_id = $_SESSION['user_id'];
         <a class="logo"><i class="ri-cactus-line"></i><span>My Cactus</span></a>
         <ul class="navbar">
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="./shopping1.php">Shopping</a></li>
-            <li><a href="./history.php">History</a></li>
-            <li><a href="./home.php">Profile</a></li>
+            <li><a href="./php/shopping1.php">Shopping</a></li>
+            <li><a href="./php/history.php">History</a></li>
+            <li><a href="./php/home.php">Profile</a></li>
             <li><a href="#">Contact</a></li>
+            
         </ul>
         <div class="main">
-            <!-- <a href="../php/login.php" class="user"><i class="ri-user-line"></i>Login</a>
-            <a href="../php/register.php">Register</a> -->
-            <?php
-            $select = mysqli_query($conn, "SELECT * FROM member WHERE member.member_id = '$user_id'") or die('query failed');
-            if(mysqli_num_rows($select) > 0){
-                $fetch = mysqli_fetch_assoc($select);
-            }
-            ?>
-            <h3>hello <?php echo $fetch['username'] ?></h3>
+            <a href="./php/login.php" class="user"><i class="ri-user-line"></i>Login</a>
+            <a href="./php/register.php">Register</a>
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
 
@@ -65,10 +50,10 @@ $user_id = $_SESSION['user_id'];
         
         <div class="slider-wrapper">
             
-            <img src="../image/sl3.jpg">
-            <img src="../image/sl2.jpg">
-            <img src="../image/sl1.jpg">
-            <img src="../image/sl4.jpg">
+            <img src="./image/sl3.jpg">
+            <img src="./image/sl2.jpg">
+            <img src="./image/sl1.jpg">
+            <img src="./image/sl4.jpg">
         </div>
     </div>
     
@@ -84,8 +69,8 @@ $user_id = $_SESSION['user_id'];
             <div class="products-container">
                 
                 <div class="image">
-                    <a href="./shopping.php?specise_id=<?= $row['specise_id']?>">
-                    <img src='../image/img_specise/<?=$row["specise_id"]?>.jpg'></a>
+                    <a href="./php/shopping.php?specise_id=<?= $row['specise_id']?>">
+                    <img src='./image/img_specise/<?=$row["specise_id"]?>.jpg'></a>
                 </div>
                 <div class="sname"><?=$row["sname"]?></div>
                 
@@ -94,13 +79,13 @@ $user_id = $_SESSION['user_id'];
         <?php endwhile; ?>
     </div>
     <div class="custom">
-        <a href="../html/custom.html">Custom your own</a>
+        <a href="./html/custom.html">Custom your own</a>
     </div>
     
 
 
   <!-- link js here -->
-  <script type="text/javascript" src="../js/js1.js"></script>
+  <script type="text/javascript" src="./js/js1.js"></script>
 
 
 </body>
