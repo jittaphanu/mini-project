@@ -1,6 +1,7 @@
 
 body{
-    background: grey;
+    /* รูปไม่ขึ้น */
+    background: url(../image/d2299c6e15c468822b04bceb26a066f8.png) ;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,4 +27,5 @@ body{
     color: white;
     text-decoration: #000000;
 }
+
 

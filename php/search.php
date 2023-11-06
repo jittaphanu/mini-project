@@ -2,9 +2,7 @@
 include "./config.php";
 include "./connect.php";
 $keyword = isset($_GET["keyword"]) ? $_GET["keyword"] : "";
-//$sql = "SELECT * FROM product WHERE product.pdetail LIKE '" . $keyword . "%' ";
 $stmt = $pdo->prepare("SELECT * FROM product WHERE product.pdetail LIKE '" . $keyword . "%' ");
-//$rs = $conn->query($sql);
 $counter = 1;
 if ($stmt->execute()) {
     
