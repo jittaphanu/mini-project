@@ -52,7 +52,9 @@
 
     <!-- css stylelink -->
     <link rel="stylesheet" href="../css/registerphp.css">
+    <script src="../js/checkreg.js"></script>
 </head>
+
 <body>
     <div class="form-container">
         <form action="" method="post" enctype="multipart/form-data">
@@ -73,10 +75,31 @@
         <input type="text" name="first_name" placeholder="enter firstname" class="box" required pattern="[A-Za-zก-๏]{1,}">
         <input type="text" name="last_name" placeholder="enter lastname" class="box" required pattern="[A-Za-zก-๏]{1,}">
         <input type="email" name="email" placeholder="enter email" class="box" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-        <input type="text" name="address" placeholder="your address" class="box" required>
+
+        <!-- <input type="text" name="address" placeholder="your address" class="box" required> -->
+
+        <select id="province" required>
+            <option value="" disabled selected>Select a Province</option>
+            <!-- API -->
+        </select>
+        <select id="amphure">
+            <option value="" disabled selected>Select a District</option>
+            <!-- API -->
+        </select>
+        <select id="tambon">
+            <option value="" disabled selected>Select a Sub-district</option>
+            <!-- API  -->
+        </select>
+        <select id="zipcode">
+            <option value="" disabled selected>Select a zipcode</option>
+            <!-- API  -->
+        </select>
+        <!-- <textarea name="address" cols="30" rows="10" readonly></textarea> -->
+        <textarea name="address" id="txtAddress" cols="30" rows="10" readonly></textarea>
+
         <input type="text" name="telll" placeholder="your tel" class="box" required pattern="[0-9]{10}">
         <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png" required >
-        <input type="submit" name="submit" value="register now" class="btn">
+        <input type="submit" name="submit" value="register now" class="btn" id="btnreg">
         <p>already have an account? <a href="login.php">login now</a></p>
         </form>
 
