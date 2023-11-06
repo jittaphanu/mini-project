@@ -47,7 +47,7 @@ $username = $_SESSION['user_name'];
             ?>
             <li><a href="<?=$url?>">History</a></li>
             <li><a href="./home.php">Profile</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="../html/aboutus.html">About us</a></li>
         </ul>
         <div class="main">
             <!-- <a href="../php/login.php" class="user"><i class="ri-user-line"></i>Login</a>

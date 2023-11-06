@@ -30,7 +30,7 @@ if (isset($_SESSION['user_id'])) { // ถ้าlogin ไว้แล้ว
             <li><a href="./php/shopping1.php">Shopping</a></li>
             <li><a href="./php/history.php">History</a></li>
             <li><a href="./php/home.php">Profile</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="./html/aboutus.html">About us</a></li>
             
         </ul>
         <div class="main">
