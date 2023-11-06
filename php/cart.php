@@ -4,10 +4,16 @@
     session_start();
     include './connect.php'; 
     include './config.php';
+    
+    if (isset($_SESSION['specise_id'])) {
+        $specise_id = $_SESSION['specise_id'];
+        $url = "./shopping.php?specise_id=$specise_id";
+       
+    } else {
+        $url = "./shopping1.php";
+    }
     if($_GET["action"]=="add"){
-        if(isset($_GET["specise_id"])){
-            $specise_id = $_GET["specise_id"];
-        }
+       
         $pid = $_GET['product_id'];
         $sql = "SELECT * FROM product  WHERE product_id = '$pid'";
         $rs  = $conn->query($sql);
@@ -36,7 +42,7 @@
         $pid = $_GET['product_id'];
         unset($_SESSION['cart'][$pid]);
     }
-
+    
     
 
     
@@ -59,7 +65,7 @@
 <body>
     <div class="container">
         <div class="cart">
-            <a href="./shopping.php?specise_id=<?= $specise_id ?>"><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="<?=$url?>"><i class="fa-solid fa-arrow-left"></i></a>
                 <div class="name">CART</div>
                 
                 <?php foreach ($_SESSION['cart'] as $item) { ?>
@@ -97,7 +103,7 @@
                 จำนวนทั้งหมด ต้น
                 ราคารวม <!-- sum price--> บาท
             </div>
-            <a class="pay" href="payment.php">ชำระเงิน</a>
+            <a class="pay" href="payment1.php">ชำระเงิน</a>
             
         </div>
     </div>

@@ -20,7 +20,7 @@ if ($stmt->execute()) {
                 <div class="price">' . $row["price"] . ' บาท</div>
                 <input type="number" class="count" min="1" value="1">
                 <button class="add">Add to cart</button>
-                <a href="shopping1.php?pdetail=' . $row["pdetail"] .'&counter=' . $counter .'">Add to cart</a>
+                <a href="cart.php?action=add&product_id='. $row['product_id'] . '&qty=1">Add to cart</a>
                 <button class="remove" onclick="Remove(' . $counter . ')"><i class="fa-solid fa-trash-can"></i></button>
             </div>
         </div><script type="text/javascript" src="../js/js2.js"></script>';

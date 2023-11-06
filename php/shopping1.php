@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include './connect.php'; ?>
+<?php include './connect.php'; 
+ session_start();?>
 
 
 <head>
@@ -54,7 +55,8 @@ function show1(){
                 <img src='../image/sl1.jpg'>
                 <!-- <img src="img/1.jpg"> -->
             </div>
-            <?php include './config.php'; 
+            <?php include './config.php';
+            unset($_SESSION['specise_id']); 
             if (!empty($_GET["pdetail"])&&!empty($_GET["counter"])) {
                 $pname = $_GET["pdetail"];
                     $stmt = $pdo->prepare("SELECT *,specise.specise_id,specise.sname FROM product JOIN specise ON specise.specise_id = product.specise_id WHERE product.pdetail = ?;");
@@ -65,50 +67,43 @@ function show1(){
                         
             }
             ?>
-            <div class="list" id="list">
-            <?php $counter = 1; while($row = $stmt->fetch()):?> 
+           <div class="list" id="list">
+                <?php $counter = 1; 
+                
+                while($row = $stmt->fetch()):?> 
                 <div class="item" data-key="<?= $counter ?>">
-                    <div class="img">
-                        <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
-                       
-                    </div>
-                    <div class="content">
-                        <div class="title">
-                             <?=$row["pname"]?>
+                    <form method="get" action="./cart.php" >
+                        <div class="img">
+                            <img src='../image/img_product/<?=$row["pname"]?>.jpg'>
+                            <!-- <img src="img1.png" alt=""> -->
                         </div>
+                        <div class="content"> 
+                            
+                            <div class="title">
+                                <?=$row["pname"]?>
+                            </div>
 
-                        <div class="des">
-                            <?=$row["pdetail"]?>
+                            <div class="des">
+                                <?=$row["pdetail"]?>
+                            </div>
+                            <div class="price">
+                                <?=$row["price"]?> บาท
+                            </div>
+                            <input type="number" class="count" min="1" value="1">
+                            <!-- <button class="add" >Add to cart</button> -->
+                            <a href="cart.php?action=add&product_id=<?= $row['product_id']?>&qty=1">Add to cart</a>
+                            <button class="remove" onclick="Remove(<?= $counter ?>)" ><i class="fa-solid fa-trash-can"></i></button> 
+                        
                         </div>
-                        <div class="price">
-                            <?=$row["price"]?> บาท
-                        </div>
-                        <input type="number" class="count" min="1" value="1">
-                        <button class="add">Add to cart</button>
-                        <button class="remove" onclick="Remove(<?= $counter ?>)"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
+                    </form>
                 </div>
-                <?php  $counter++; endwhile;
-                ?>    
+                <?php  $counter++; endwhile;?>    
 
             </div>
 
         </div>
 
-        <div class="cart">
-            <div class="">
-            <div class="name">CART</div>
-            <div class="listCart"></div>
-            <div class="payment">
-                <div class="text">
-                    จำนวนสินค้าทั้งหมด ต้น<br>
-                    ราคารวม <!-- sum price--> บาท
-                </div>
-                <a class="pay" href="payment.php">ชำระเงิน</a>
-            </div>
-            </div>
-        </div>
-    </div>
+        
 
 
     <script src="../js/js2.js"></script>

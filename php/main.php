@@ -11,6 +11,7 @@ if(isset($_GET['logout'])){
     header('location:login.php');
 }
 $user_id = $_SESSION['user_id'];
+$username = $_SESSION['user_name'];
 ?>
 
 
@@ -37,7 +38,14 @@ $user_id = $_SESSION['user_id'];
         <ul class="navbar">
             <li><a href="#" class="active">Home</a></li>
             <li><a href="./shopping1.php">Shopping</a></li>
-            <li><a href="./history.php">History</a></li>
+            <?php 
+                if($username === 'admin'){
+                    $url = "./pageadmin.php";
+                }else{
+                    $url = "./history.php";
+                }
+            ?>
+            <li><a href="<?=$url?>">History</a></li>
             <li><a href="./home.php">Profile</a></li>
             <li><a href="#">Contact</a></li>
         </ul>

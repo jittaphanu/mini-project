@@ -33,7 +33,7 @@ $username= $_SESSION['user_name'];
           <div class="card-body p-4">
             <?php 
                     $sum = 0;
-                    $sql = "SELECT * FROM lists JOIN orders ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id WHERE orders.member_id = '$user_id'";
+                    $sql = "SELECT * FROM lists JOIN orders ON orders.order_id=lists.order_id JOIN product ON product.product_id=lists.product_id JOIN member ON member.member_id=orders.member_id";
                     $rs = $conn->query($sql);
                     while ($row = $rs->fetch_assoc()) {
                         $imageFileName = $row['pname'] . '.jpg'; 
@@ -46,6 +46,8 @@ $username= $_SESSION['user_name'];
                 <p class="text-muted"> Qt: <?=$row['order_quatity']?>  item</p>
                 <h4 class="mb-3"> <?=$row['price']?> ฿ <span class="small text-muted"> </span></h4>
                 <p class="text-muted">Order on: <span class="text-body"><?=$row['date']?>, <?=$row['time']?></span></p>
+                <p class="text-muted">Account: <span class="text-body"><?=$row['username']?></span></p>
+                <p class="text-muted">Address: <span class="text-body"><?=$row['address']?></span></p>
               </div>
               <div>
                 <img class="align-self-center img-fluid"
